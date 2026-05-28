@@ -34,7 +34,7 @@ No patch is available. The product is abandoned. All installed instances remain 
 | Affected product | Pocket Android v8.33.0.0 (final release) |
 | Package ID | `com.ideashower.readitlater.pro` |
 | Vendor | Mozilla Corporation / Read It Later, Inc. |
-| CVSS v4.0 Score | 9.3 — `CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:N/SC:H/SI:H/SA:N/RL:U` |
+| CVSS v4.0 Score | 9.2 — `CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N` |
 | Severity | CRITICAL |
 | First reported to vendor | 2021-04-19 (paywall bypass) |
 | XSS formally reported to Mozilla Security | 2024-07-10 |
@@ -182,24 +182,24 @@ Phase 5 — Native Bridge Access [PARTIALLY CONFIRMED]
 
 ## 5. CVSS v4.0 Vector Decomposition
 
-Full vector: `CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:N/SC:H/SI:H/SA:N/RL:U`
+Full vector: `CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N`
 
 | Metric | Value | Justification |
 |---|---|---|
 | Attack Vector (AV) | Network (N) | Payload delivered and executed via internet |
 | Attack Complexity (AC) | Low (L) | No race conditions or memory protections to bypass |
-| Attack Requirements (AT) | None (N) | No prerequisite conditions; EOL software, no updates possible |
+| Attack Requirements (AT) | Present (P) | User must have saved at least one article prior to the attack to trigger background sync. |
 | Privileges Required (PR) | None (N) | No authentication required on target |
 | User Interaction (UI) | None (N) | Execution automatic via background service post-save |
 | Vuln. Confidentiality (VC) | High (H) | Session tokens, article DB, reading habits exposed |
 | Vuln. Integrity (VI) | High (H) | JS can alter app state via native bridge methods |
-| Vuln. Availability (VA) | None (N) | No availability impact identified |
-| Subsequent Confidentiality (SC) | High (H) | Native bridge access extends impact beyond WebView |
-| Subsequent Integrity (SI) | High (H) | Bridge methods allow persistent app-state manipulation |
-| Subsequent Availability (SA) | None (N) | No subsequent availability impact identified |
+| Vuln. Availability (VA) | High (H) | Background service availability can be disrupted |
+| Subsequent Confidentiality (SC) | None (N) | Impact is contained within the Android Application Sandbox. |
+| Subsequent Integrity (SI) | None (N) | Impact is contained within the Android Application Sandbox. |
+| Subsequent Availability (SA) | None (N) | Impact is contained within the Android Application Sandbox. |
 | Remediation Level (RL) | Unavailable (U) | Product abandoned; no patch forthcoming |
 
-**Base Score: 9.3 — CRITICAL**
+**Base Score: 9.2 — CRITICAL**
 
 ---
 
@@ -222,7 +222,7 @@ All dates verified against original email evidence (POCKET_MAIL.pdf, POCKET_MAIL
 | **2024-07-11, 09:32** | Mozilla Security (Frida) response: *"Pocket is out of scope of our web bug bounty program and we only accept reports with critical severity."* Requests individual HackerOne submissions. No fix committed. | Mozilla Security Team → Zampier Zago |
 | **2024-07-24, 19:00** | Mozilla Privacy Team (compliance@mozilla.com): redirects to bug bounty form. No substantive engagement. | Mozilla Privacy Team → Zampier Zago |
 | **2025** | Mozilla releases **v8.33.0.0 as the final version** of Pocket Android before service sunset. The vulnerable code in `articleview-mobile.js` (lines 95–99) is identical and unmodified. No security patch deployed. No kill-switch or forced uninstall. | Mozilla (public) |
-| **2026-01-02** | Video evidence recorded on real device: Pocket Android v8.33.0.0 fully operational months after service termination. Paywall bypass confirmed active. Background services confirmed running. | Zampier Zago (video recording, available upon request) |
+| **2026-01-02** | Video evidence recorded on real device: Pocket Android v8.33.0.0 fully operational months after service termination. Paywall bypass confirmed active. Background services confirmed running. | Zampier Zago (video recording, can dowmload here the compressed version, the original with the full metadata verificable is available upon request) |
 | **2026-02-06** | Forensic APK analysis of v8.33.0.0 completed. Vulnerable code confirmed at lines 95–99. Bridge and service confirmed. | Ing. Zampier Zago — Technical Forensic Report v1.0 |
 | **2026-05-22** | Independent technical re-verification of all claims against actual APK files. Minor citation errors corrected. | Ing. Zampier Zago |
 | **2026-05-26** | This report (v3.0) submitted for CVE ID reservation to MITRE CNA-LR. | Ing. Zampier Zago → MITRE |
@@ -318,33 +318,17 @@ Ready for exact copy-paste:
 
 **Description:**
 ```
-** UNSUPPORTED WHEN ASSIGNED ** DOM-Based Cross-Site Scripting (XSS) (CWE-79)
-in the articleview-mobile.js component in Mozilla Pocket (Android) version
-8.33.0.0 allows remote attackers to execute arbitrary JavaScript within the
-application's WebView and interact with the native PocketAndroidArticleInterface
-Java bridge via a crafted HTML payload processed automatically by the background
-DownloadingService, without any user interaction (zero-click).
-NOTE: The vendor (Mozilla Corporation) was formally contacted on 2024-07-10 via
-security@mozilla.org. Mozilla Security responded on 2024-07-11 explicitly
-declining to assign a CVE ID, stating: "Pocket is out of scope of our web bug
-bounty program." The Pocket service was subsequently sunset in 2025. Version
-8.33.0.0 — the final release (2025) — was shipped with the vulnerable code entirely
-unchanged from the version analyzed prior to the July 2024 disclosure.
-The vulnerability remains unpatched and active in the wild.
+** UNSUPPORTED WHEN ASSIGNED ** A DOM-Based Cross-Site Scripting (XSS) vulnerability (CWE-79) in the articleview-mobile.js component of Mozilla Pocket for Android through version 8.33.0.0 allows remote attackers to execute arbitrary JavaScript within the application's WebView. By leveraging the background DownloadingService, a crafted HTML payload is processed automatically without user interaction (zero-click), allowing interaction with the native PocketAndroidArticleInterface Java bridge. 
+NOTE: This product is End-of-Life and no longer supported by the vendor.
 ```
 
 **Additional Information / Vendor Communication:**
 ```
-First disclosure: 2021-04-19 via support@getpocket.com (paywall bypass).
-APK analysis identifying XSS (CWE-79): ~June 2024.
-Formal security report: 2024-07-10 to security@mozilla.org (CWE-79, CWE-200, CWE-693).
-Mozilla Security final response: 2024-07-11 (Frida, Mozilla Security Team) —
-"Pocket is out of scope of our web bug bounty program." No fix committed.
-Final APK v8.33.0.0 released 2025 with vulnerable code unchanged.
-Service sunset 2025. No patch, kill-switch, or forced uninstall deployed.
-App confirmed fully operational on real device: 2026-01-02 (video evidence available).
-Disclosure timeline: 2021-2026 (5 years).
-CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:N/SC:H/SI:H/SA:N/RL:U = 9.3 CRITICAL.
+First disclosure: 2021-04-19 (paywall bypass). 
+Formal security report identifying XSS (CWE-79): 2024-07-10 to Mozilla Security.
+Vendor response (2024-07-11): Product declared out of scope.
+Final APK v8.33.0.0 released in 2025 with vulnerable code unchanged.
+Service sunset 2025. Product is abandoned.
 ```
 
 ---
