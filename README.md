@@ -11,6 +11,10 @@
 
 ---
 
+
+https://github.com/user-attachments/assets/e2b0aa46-df64-452b-afbf-fa31dd8c650d
+
+
 ## 1. Executive Summary
 
 A DOM-based Cross-Site Scripting (XSS) vulnerability has been confirmed in Pocket Android version 8.33.0.0 (package `com.ideashower.readitlater.pro`), the final release shipped by Mozilla / Read It Later, Inc. before service termination in July 2025. The vulnerability allows an attacker to inject and execute arbitrary JavaScript in the application's WebView without any user interaction beyond a single "Save to Pocket" action — a **0-click exploit** post-delivery.
