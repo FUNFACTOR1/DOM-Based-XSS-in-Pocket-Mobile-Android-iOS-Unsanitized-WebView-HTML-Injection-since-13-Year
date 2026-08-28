@@ -6,11 +6,13 @@
 ![CNA](https://img.shields.io/badge/CNA-MITRE_Corporation-blue)
 ![Tag](https://img.shields.io/badge/Tag-unsupported--when--assigned-orange)
 
-## Cross-Site Scripting (0-Click) Leading to JavaScript Bridge Abuse in Pocket Android
+## Cross-Site Scripting (0-Click) Leading to JavaScript Bridge Abuse in Pocket Android & iOS — CVSS 9.2 CRITICAL
 ### CVE-2026-82090 — Published by MITRE Corporation (2026-08-28)
 
 **Author:** Ing. Zampier Zago
-**Classification:** Security Vulnerability Analysis — CVE Submission
+**Company:** PS 1978 Limited — www.ps1978ltd.it
+**Contact:** zampier@ps1978ltd.it
+**Classification:** Security Vulnerability Analysis — CVE-2026-82090
 
 ---
 
@@ -38,6 +40,7 @@ No patch is available. The product is abandoned. All installed instances remain 
 
 | Field | Value |
 |---|---|
+| CVE | [CVE-2026-82090](https://www.cve.org/CVERecord?id=CVE-2026-82090) — Published 2026-08-28 — CNA: MITRE Corporation |
 | Vulnerability type | DOM-Based XSS (0-click) + JavaScript Bridge Abuse |
 | CWE | CWE-79, CWE-116 |
 | Exploit status | 0-click, 0-day — no patch available; product End-of-Life |
@@ -400,6 +403,7 @@ bundle (ReadItLaterPro.app, v4.5.2, circa 2012), evidencing
 
 ## 12. References
 
+- CVE-2026-82090 (official record): https://www.cve.org/CVERecord?id=CVE-2026-82090
 - CWE-79: https://cwe.mitre.org/data/definitions/79.html
 - CWE-116: https://cwe.mitre.org/data/definitions/116.html
 - CVSS v4.0 Specification: https://www.first.org/cvss/v4.0/specification-document
