@@ -1,6 +1,13 @@
 # XSS 0-Click / 0-Day Vulnerability Report
+
+![CVE](https://img.shields.io/badge/CVE-2026--82090-red)
+![CVSS](https://img.shields.io/badge/CVSS_4.0-9.2_CRITICAL-critical)
+![Status](https://img.shields.io/badge/Status-PUBLISHED-brightgreen)
+![CNA](https://img.shields.io/badge/CNA-MITRE_Corporation-blue)
+![Tag](https://img.shields.io/badge/Tag-unsupported--when--assigned-orange)
+
 ## Cross-Site Scripting (0-Click) Leading to JavaScript Bridge Abuse in Pocket Android
-### CVE record self-authored: CAN-2026-2030598 (MITRE submission)
+### CVE-2026-82090 — Published by MITRE Corporation (2026-08-28)
 
 **Author:** Ing. Zampier Zago
 **Classification:** Security Vulnerability Analysis — CVE Submission
@@ -352,9 +359,9 @@ No vendor mitigations exist or are forthcoming.
 
 ---
 
-## 11. CVE Submission Details
+## 11. CVE Record
 
-**Record:** Self-authored submission filed via cveform.mitre.org as `CAN-2026-2030598`. (A CAN identifier is a self-authored CVE record, not an officially assigned CVE.)
+**CVE ID:** CVE-2026-82090 — Published 2026-08-28 by MITRE Corporation (CNA). Originally submitted as CAN-2026-2030598 via cveform.mitre.org.
 
 **Vendor:** Mozilla Corporation
 **Product:** Pocket (Android)
@@ -406,4 +413,4 @@ bundle (ReadItLaterPro.app, v4.5.2, circa 2012), evidencing
 
 ---
 
-*Ing. Zampier Zago — info@zampier.it — https://github.com/FUNFACTOR1*
+*Ing. Zampier Zago — zampier@ps1978ltd.it — PS 1978 Limited — www.ps1978ltd.it — https://github.com/FUNFACTOR1*
